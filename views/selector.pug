@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+  - let image_names = ['hill1.jpg','hill2.jpg','hill3.jpg','hill4.jpg','hill5.jpg']
+  - for(let i=0;i<3;i++){
+      - let rno = Math.floor(Math.random()*5)
+      - let iname = image_names[rno]
+
+      img(src=`images/${iname}` alt='hill' style='width:300px; height:300px;')
+      |    
+  - }
