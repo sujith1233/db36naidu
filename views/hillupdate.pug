@@ -1,0 +1,39 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  if (toShow == null) 
+    h2 No instance to update 
+  else 
+    - let hillId = toShow._id 
+    - let name = toShow.name 
+    - let height = toShow.height 
+    
+    div.row(class='mb-2') 
+        div.mr-1 ID is 
+        div #{hillId} 
+    - let actionid = "/resource/hills/" + hillId 
+    form(id='HillForm', action= actionid, method="PUT") 
+        div.form-group 
+            label.hillAttr(for='name') Name 
+            input#name(type='text', name='name', value= name ) 
+        div.form-group 
+            label.hillAttr(for='height') Height 
+            input#height(type='text', name='height', value= height ) 
+        input(type="submit") 
+ 
+  script. 
+    document.forms['HillForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      fetch(event.target.action, { 
+        method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) 
+      }).then((resp) => { 
+        return resp.json(); 
+      }).then((body) => { 
+        alert("Update succeded") 
+      }).catch((error) => { 
+        alert("Update failed " + error ) 
+      }); 
+    }); 

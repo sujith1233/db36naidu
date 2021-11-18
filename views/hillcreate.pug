@@ -1,0 +1,30 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  form(id='HillForm', action="/resource/hills", method="POST") 
+    div.form-group 
+        label(for='name', class="control-label", placeholder="Enter Name of the Hill") Name:
+        input#name(type='text', name='name', class="form-control") 
+    div.form-group 
+        label(for='height', class="control-label", placeholder="Enter height of the Hill (in meters)") Height:
+        input#height(type='text', name='height', class="form-control") 
+    input(type="submit" class="btn btn-success") 
+ 
+  script. 
+    document.forms['HillForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      fetch(event.target.action, { 
+        method: 'POST', 
+        body: new URLSearchParams(new FormData(event.target)) 
+      }).then((resp) => { 
+        return resp.json(); 
+      }).then((body) => { 
+        alert("Save succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Save failed " + error ) 
+      }); 
+    }); 

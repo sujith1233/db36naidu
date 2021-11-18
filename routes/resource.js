@@ -20,13 +20,15 @@ router.post('/hills', hill_controller.hill_create_post);
 router.delete('/hills/:id', hill_controller.hill_delete); 
  
 // PUT request to update hill. 
-router.put('/hills/:id', 
-hill_controller.hill_update_put); 
+router.put('/hills/:id', hill_controller.hill_update_put); 
  
 // GET request for one hill. 
 router.get('/hills/:id', hill_controller.hill_detail); 
  
 // GET request for list of all hill items. 
 router.get('/hills', hill_controller.hill_list); 
+
+// GET request for list of all hill items. 
+router.post('/insert', hill_controller.hill_create_post); 
  
 module.exports = router;

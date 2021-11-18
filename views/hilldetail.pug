@@ -1,0 +1,20 @@
+extends layout 
+ 
+block content 
+  h1= title 
+  if (toShow == null) 
+    h2 No instance to update 
+  else 
+    - let Id = toShow._id 
+    - let name = toShow.name 
+    - let height = toShow.height 
+    div 
+        div.row 
+        div(class='hillAttr mr-3') ID is: 
+        div #{Id} 
+        div.row 
+        div(class='hillAttr mr-3') Name is: 
+        div #{name} 
+        div.row 
+        div(class='hillAttr mr-3') Height is: 
+        div #{height} 
