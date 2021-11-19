@@ -5,14 +5,19 @@ block content
   - const hills = results;
  
   div(class='container-fluid')
-    div(class='row')
+    div(class='row m-1')
       div(class='col-sm-6') Name
       div(class='col-sm-6') Height
       each item,index in hills
+        - let destination = `dispatch(\"/hill/update?id=${item._id}\")` 
         div(class='col-sm-6' onclick='buy('+index+')') #{item.name}
         div(class='col-sm-6' onclick='buy('+index+')') #{item.height}
+        button.btn( class="btn-primary ml-1", onclick= destination) Update 
 
   script.
     function buy(x){
       alert('Purchased Item: ' + x)
+    } 
+    function dispatch(path){ 
+      window.location.href=path 
     } 
